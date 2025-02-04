@@ -18,5 +18,5 @@ app.post('/echo', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(Echo server listening at http://localhost:${port});
+  console.log(`Echo server listening at http://localhost:${port}`);
 });
