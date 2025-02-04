@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
 });
 
 // Echo route
-app.post('/echo', (req, res) => {
+app.post('/', (req, res) => {
   const receivedText = req.body.text;
   res.json({ message: receivedText });
 });
