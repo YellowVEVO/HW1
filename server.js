@@ -1,28 +1,15 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-
 const app = express();
-const port = process.env.PORT || 3000;  // Use Render-assigned port
+const port = process.env.PORT || 3000;
 
-app.use(bodyParser.json());  // Use bodyParser.json() to handle JSON
+// Middleware to parse the request body
+app.use(express.text());
 
-// Default route to check if the server is running
-app.get('/', (req, res) => {
-  res.send("Echo Server is running!");
-});
-
-// Echo route to respond with a JSON object containing the received text
+// POST route to echo the request body
 app.post('/', (req, res) => {
-  const receivedText = req.body.text;  // Access the 'text' field from the JSON request body
-  if (receivedText) {
-    res.json({ message: receivedText });  // Respond with JSON in the format {"message": "hello world"}
-  } else {
-    res.status(400).send("No text field in the request");
-  }
+  res.status(200).send(req.body); // Respond with the same body received
 });
 
 app.listen(port, () => {
-  console.log(`Echo server listening at http://localhost:${port}`);
+  console.log(`Echo server listening on port ${port}`);
 });
-
-module.exports = app;  // Export for testing
